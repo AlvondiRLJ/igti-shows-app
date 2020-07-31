@@ -10,8 +10,6 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen;
-
 const styles = StyleSheet.create({
     viewStyle:{
         flex: 1,
@@ -19,3 +17,5 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     }
 })
+
+export default HomeScreen;
