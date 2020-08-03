@@ -1,11 +1,12 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-
+import React,{useState} from "react";
+import { StyleSheet, View, } from "react-native";
+import Input from "../components/form/Input"
 
 const HomeScreen = () => {
+    [stateNome, setStateNome] = useState("");
     return (
         <View style={styles.viewStyle}>
-            <Text>Hello world Alvondi!!</Text>
+            <Input label="nome" onChange={(text)=>setStateNome(text)} value={stateNome}/>
         </View>
     )
 }
@@ -13,8 +14,8 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     viewStyle:{
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center"
+        alignItems: "stretch",
+        justifyContent: "flex-start"
     }
 })
 
