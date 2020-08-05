@@ -1,18 +1,18 @@
-import React, {useState} from "react";
-import {StyleSheet, TextInput, Text} from "react-native"
+import React from "react";
+import {StyleSheet, Text} from "react-native"
+import GenericInput from "./GenericInput";
 
 const Input = (props) => {
-    const [stateValor, setStateValor] = useState(props.initialValue);
 
     const onChange = (text) => {
-        setStateValor(text);
-        props.onChange(text);
+        if (props.onChange)
+           props.onChange(text);
     }
 
     return(
         <>
             <Text>{props.label}</Text>
-            <TextInput value={stateValor} style={styles.textInputStyle} onChangeText={onChange}/> 
+            <GenericInput initialValue={props.initialValue} style={styles.textInputStyle} onChangeText={onChange}/> 
         </>
     )
 }
