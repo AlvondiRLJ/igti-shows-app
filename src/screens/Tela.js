@@ -1,13 +1,12 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
-const HomeScreen = (props) => {
-    const {navigation} = props;
+const TelaScreen = () => {
+
     return (
         <>
             <View style={styles.viewStyle}>
-                <Text>Tela Home</Text>
-                <Button title={"Faça a Navegação"} onPress={() => navigation.navigate("Tela")} />
+                <Text>Tela Navegada</Text>
             </View>
         </>
     )
@@ -22,4 +21,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HomeScreen;
+export default TelaScreen;
