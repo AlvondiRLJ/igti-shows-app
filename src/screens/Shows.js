@@ -1,14 +1,34 @@
 import React from "react";
-import {Text} from "react-native";
+import {View, StyleSheet} from "react-native";
+import {ShowList} from "../components/list/ShowList";
+import ShowDetail from "../components/detail/ShowDetail";
 
 const ShowsScreen = () => {
     return (
         <>
-            <Text></Text>
-            <Text></Text>
-            <Text>Essa é a tela de shows</Text>
+            <View style={styles.parentStyle}>
+                <View style={styles.listStyle}>
+                    <ShowList/>
+                </View>
+                <View style={styles.detailStyle}>
+                    <ShowDetail/>
+                </View>
+            </View>
         </>
     )
 }
+
+const styles = StyleSheet.create({
+    parentStyle: {
+        flex: 1,
+        marginTop: 20
+    },
+    listStyle: {
+        flex: 2
+    },
+    detailStyle: {
+        flex: 1
+    }
+})
 
 export default ShowsScreen;
