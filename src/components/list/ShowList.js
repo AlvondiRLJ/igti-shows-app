@@ -1,28 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, TouchableOpacity, Text, StyleSheet, View } from "react-native";
+import show from "../../api/show";
 
-const shows = { items: [
-    {
-        id: 1,
-        nome: "Friends"
-    },
-    {
-        id: 2,
-        nome: "Heroes"
-    },
-    {
-        id: 3,
-        nome: "Two and a half man"
-    }
-]};
 
 export const ShowList = () => {
+    const [listState, setListState] = useState(null);
+
+    useEffect(()=>{
+        show.get("/shows")
+            .then(response=>{
+                setListState(response.data)
+            })
+    },[]);
+
     return (
             <>
                 <View style={styles.listStyle}>
-                    <FlatList data={shows.items} renderItem={({item})=> <TouchableOpacity onPress={()=> console.info("cliquei em "+item.id)}>
+                    <FlatList 
+                        data={listState}
+                        keyExtractor={(item)=>item.id} 
+                        renderItem={({item})=> <TouchableOpacity onPress={()=> console.info("cliquei em "+item.id)}>
                                                                             <View style={styles.buttonStyle}>
-                                                                                <Text>{item.nome}</Text>
+                                                                                <Text>{item.name}</Text>
                                                                             </View>
                                                                         </TouchableOpacity>} />
                 </View>
