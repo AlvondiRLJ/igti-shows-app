@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FlatList, TouchableOpacity, Text, StyleSheet, View } from "react-native";
-import show from "../../api/show";
-
+import { useShows } from "../../hooks/useShows";
 
 export const ShowList = () => {
-    const [listState, setListState] = useState(null);
-
-    useEffect(()=>{
-        show.get("/shows")
-            .then(response=>{
-                setListState(response.data)
-            })
-    },[]);
+    const {shows} = useShows();
 
     return (
             <>
                 <View style={styles.listStyle}>
                     <FlatList 
-                        data={listState}
+                        data={shows}
                         keyExtractor={(item)=>item.id} 
                         renderItem={({item})=> <TouchableOpacity onPress={()=> console.info("cliquei em "+item.id)}>
                                                                             <View style={styles.buttonStyle}>
