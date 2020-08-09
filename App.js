@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useReducer} from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {NavigationContainer} from "@react-navigation/native";
 import HomeScreen from "./src/screens/Home";
@@ -8,6 +8,7 @@ import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { AppContext, appReducer, initialState } from "./src/context/AppContext";
 
 const TabNav = createBottomTabNavigator();
 
@@ -37,14 +38,18 @@ const TabBar = ({navigation, state}) => {
   )
 }
 function App() {
+  const [state,dispatch] = useReducer(appReducer, initialState);
   return (
-    <NavigationContainer>
-      <TabNav.Navigator tabBar={props=> <TabBar {...props}/>}>
-        <TabNav.Screen name={"Home"} component={HomeScreen}/>
-        <TabNav.Screen name={"Shows"} component={ShowsScreen}/>
-        <TabNav.Screen name={"NewShow"} component={NewShowScreen}/>
-      </TabNav.Navigator>
-    </NavigationContainer>
+
+    <AppContext.Provider value={{state,dispatch}}>
+      <NavigationContainer>
+        <TabNav.Navigator tabBar={props=> <TabBar {...props}/>}>
+          <TabNav.Screen name={"Home"} component={HomeScreen}/>
+          <TabNav.Screen name={"Shows"} component={ShowsScreen}/>
+          <TabNav.Screen name={"NewShow"} component={NewShowScreen}/>
+        </TabNav.Navigator>
+      </NavigationContainer>
+    </AppContext.Provider>
   )
 }
 
