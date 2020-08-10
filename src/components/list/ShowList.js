@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FlatList, TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import { useShows } from "../../hooks/useShows";
+import { AppContext } from "../../context/AppContext";
 
 export const ShowList = () => {
     const {shows} = useShows();
+    const {dispatch} = useContext(AppContext);
+
+
 
     return (
             <>
@@ -11,7 +15,7 @@ export const ShowList = () => {
                     <FlatList 
                         data={shows}
                         keyExtractor={(item)=>item.id} 
-                        renderItem={({item})=> <TouchableOpacity onPress={()=> console.info("cliquei em "+item.id)}>
+                        renderItem={({item})=> <TouchableOpacity onPress={()=> dispatch({type: "setItemSelected",payload: item.id})}>
                                                                             <View style={styles.buttonStyle}>
                                                                                 <Text>{item.name}</Text>
                                                                             </View>
