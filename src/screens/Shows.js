@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     listStyle: {
-        flex: 2
+        flex: 4
     },
     detailStyle: {
-        flex: 1
+        flex: 3
     }
 })
 

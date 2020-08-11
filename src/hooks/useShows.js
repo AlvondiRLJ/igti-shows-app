@@ -7,7 +7,7 @@ export const useShows=()=> {
     useEffect(()=>{
         show.get("/shows")
             .then(response=>{
-                const action = {type: "createList", payload:response.data}
+                const action = {type: "createList",payload:response.data};
                 dispatch(action);
             })
     },[]);

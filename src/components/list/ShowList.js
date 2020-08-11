@@ -5,17 +5,16 @@ import { AppContext } from "../../context/AppContext";
 
 export const ShowList = () => {
     const {shows} = useShows();
-    const {dispatch} = useContext(AppContext);
-
-
+    const {dispatch} = useContext(AppContext);  
 
     return (
             <>
                 <View style={styles.listStyle}>
                     <FlatList 
-                        data={shows}
+                        data={shows.sort((show1,show2)=>(""+show1.name).localeCompare(show2.name))}
                         keyExtractor={(item)=>item.id} 
-                        renderItem={({item})=> <TouchableOpacity onPress={()=> dispatch({type: "setItemSelected",payload: item.id})}>
+                        renderItem={({item})=> <TouchableOpacity 
+                                                    onPress={()=>dispatch({type:"setItemSelected",payload:item.id})}>
                                                                             <View style={styles.buttonStyle}>
                                                                                 <Text>{item.name}</Text>
                                                                             </View>
